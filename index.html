@@ -8,19 +8,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="dark-mode">
 
     <header class="header">
-        <div class="logo calligraphy-font">Andromeda</div>
+        <div class="header-top">
+            <div class="logo calligraphy-font">Andromeda</div>
+            <button id="theme-toggle" class="theme-toggle">
+                <span class="icon">🌙</span>
+            </button>
+        </div>
         <nav class="nav">
-            <a href="#" class="nav-link">Interface</a>
-            <a href="#" class="nav-link">Launch</a>
-            <a href="#" class="nav-link">Control</a>
+            <a href="#" class="nav-link"><i class="fa-solid fa-code-merge nav-icon"></i> Interface</a>
+            <a href="#" class="nav-link"><i class="fa-solid fa-rocket nav-icon"></i> Launch</a>
+            <a href="#" class="nav-link"><i class="fa-solid fa-sliders nav-icon"></i> Control</a>
         </nav>
-        <button id="theme-toggle" class="theme-toggle">
-            <span class="icon">🌙</span>
-        </button>
     </header>
 
     <main class="container">
