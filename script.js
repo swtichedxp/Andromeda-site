@@ -52,9 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Gradient Rotation on Button Click
     allButtons.forEach(button => {
         button.addEventListener('click', () => {
-            body.classList.add('rotate-gradient');
+            button.classList.add('rotate-button-gradient');
             setTimeout(() => {
-                body.classList.remove('rotate-gradient');
+                button.classList.remove('rotate-button-gradient');
             }, 700); // Duration matches the CSS animation
         });
     });
