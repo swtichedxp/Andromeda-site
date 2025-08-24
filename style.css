@@ -2,14 +2,14 @@
     --instagram-gradient: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888, #9b28b4, #5c2c8f);
     --bg-color-dark: #121212;
     --text-color-dark: #e0e0e0;
-    --card-bg-dark: rgba(30, 30, 30, 0.8); /* Semi-transparent for blurred background */
+    --card-bg-dark: rgba(30, 30, 30, 0.8);
     --border-color-dark: #333333;
     --console-bg-dark: rgba(33, 33, 33, 0.9);
     --console-border-dark: #444444;
 
     --bg-color-light: #f4f7f6;
     --text-color-light: #2c3e50;
-    --card-bg-light: rgba(255, 255, 255, 0.8); /* Semi-transparent for blurred background */
+    --card-bg-light: rgba(255, 255, 255, 0.8);
     --border-color-light: #e0e6e8;
     --accent-color-light: #4c4c4c;
 }
@@ -19,10 +19,35 @@ body {
     margin: 0;
     padding: 0;
     transition: background-color 0.3s, color 0.3s;
+    background-color: var(--bg-color-dark);
+}
+
+/* Background image with blur and darken effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-image: url('https://ik.imagekit.io/apexcloud/d0974806-eec8-419b-bb40-9c19305feefe.jpeg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-repeat: no-repeat;
+    filter: blur(10px);
+    z-index: -2;
+}
+
+/* Dark overlay on top of the blurred background image */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
 }
 
 .calligraphy-font {
@@ -30,7 +55,6 @@ body {
 }
 
 .dark-mode {
-    background-color: var(--bg-color-dark);
     color: var(--text-color-dark);
 }
 
@@ -143,23 +167,23 @@ body.light-mode .hero-title {
     display: inline-block;
 }
 
-/* Animations */
-@keyframes slideInFromTop {
+/* Animations (triggered on scroll) */
+@keyframes fadeInFromTop {
     from { transform: translateY(-50px); opacity: 0; filter: blur(5px); }
     to { transform: translateY(0); opacity: 1; filter: blur(0); }
 }
 
-@keyframes slideInFromBottom {
+@keyframes fadeInFromBottom {
     from { transform: translateY(50px); opacity: 0; filter: blur(5px); }
     to { transform: translateY(0); opacity: 1; filter: blur(0); }
 }
 
-@keyframes slideInFromLeft {
+@keyframes fadeInFromLeft {
     from { transform: translateX(-50px); opacity: 0; filter: blur(5px); }
     to { transform: translateX(0); opacity: 1; filter: blur(0); }
 }
 
-@keyframes slideInFromRight {
+@keyframes fadeInFromRight {
     from { transform: translateX(50px); opacity: 0; filter: blur(5px); }
     to { transform: translateX(0); opacity: 1; filter: blur(0); }
 }
@@ -169,11 +193,22 @@ body.light-mode .hero-title {
     100% { background-position: 100% 50%; }
 }
 
-.main-hero { animation: slideInFromTop 0.8s ease-out; }
-.bot-section { animation: slideInFromBottom 0.8s ease-out 0.2s; }
-.contact-section { animation: slideInFromLeft 0.8s ease-out 0.4s; }
-.faq-section { animation: slideInFromRight 0.8s ease-out 0.6s; }
-.footer { animation: slideInFromBottom 0.8s ease-out 0.8s; }
+/* Elements that will be animated */
+.main-hero,
+.bot-section,
+.contact-section,
+.faq-section,
+.footer {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.main-hero.animated { animation: fadeInFromTop 0.8s ease-out forwards; }
+.bot-section.animated { animation: fadeInFromBottom 0.8s ease-out forwards; }
+.contact-section.animated { animation: fadeInFromLeft 0.8s ease-out forwards; }
+.faq-section.animated { animation: fadeInFromRight 0.8s ease-out forwards; }
+.footer.animated { animation: fadeInFromBottom 0.8s ease-out forwards; }
+
 
 .header {
     position: sticky;
@@ -595,4 +630,4 @@ body.light-mode .hero-title {
     .footer-content {
         flex-direction: column;
     }
-    }
+}
