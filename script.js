@@ -2,27 +2,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
 
-    // Load saved theme from localStorage, or default to dark
-    const savedTheme = localStorage.getItem('theme');
+    // Load saved theme from localStorage, defaulting to dark
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     if (savedTheme === 'light') {
         body.classList.remove('dark-mode');
+        body.classList.add('light-mode');
         themeToggle.querySelector('.icon').textContent = '☀️';
     } else {
         body.classList.add('dark-mode');
+        body.classList.remove('light-mode');
         themeToggle.querySelector('.icon').textContent = '🌙';
     }
 
     // Toggle theme
     themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        const isDarkMode = body.classList.contains('dark-mode');
-        themeToggle.querySelector('.icon').textContent = isDarkMode ? '🌙' : '☀️';
-        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        if (body.classList.contains('dark-mode')) {
+            body.classList.remove('dark-mode');
+            body.classList.add('light-mode');
+            themeToggle.querySelector('.icon').textContent = '☀️';
+            localStorage.setItem('theme', 'light');
+        } else {
+            body.classList.remove('light-mode');
+            body.classList.add('dark-mode');
+            themeToggle.querySelector('.icon').textContent = '🌙';
+            localStorage.setItem('theme', 'dark');
+        }
     });
 
     // FAQ Accordion
     const faqQuestions = document.querySelectorAll('.faq-question');
-
     faqQuestions.forEach(question => {
         question.addEventListener('click', () => {
             const answer = question.nextElementSibling;
