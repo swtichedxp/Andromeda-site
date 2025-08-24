@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
+    const allButtons = document.querySelectorAll('button, a.hero-button, a.social-button');
 
     // Load saved theme from localStorage, defaulting to dark
     const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -45,6 +46,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 answer.style.maxHeight = '0';
                 answer.style.paddingTop = '0';
             }
+        });
+    });
+
+    // Gradient Rotation on Button Click
+    allButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            body.classList.add('rotate-gradient');
+            setTimeout(() => {
+                body.classList.remove('rotate-gradient');
+            }, 700); // Duration matches the CSS animation
         });
     });
 });
