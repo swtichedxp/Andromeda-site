@@ -58,4 +58,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 700); // Duration matches the CSS animation
         });
     });
+
+    // Intersecton Observer for scroll animations
+    const animatedSections = document.querySelectorAll('.main-hero, .bot-section, .contact-section, .faq-section, .footer');
+    
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+                observer.unobserve(entry.target); // Stop observing once it's animated
+            }
+        });
+    }, {
+        threshold: 0.2 // Trigger animation when 20% of the section is visible
+    });
+
+    animatedSections.forEach(section => {
+        observer.observe(section);
+    });
 });
