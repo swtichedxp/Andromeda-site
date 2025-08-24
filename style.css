@@ -11,14 +11,18 @@
     --text-color-light: #2c3e50;
     --card-bg-light: #ffffff;
     --border-color-light: #e0e6e8;
-    --accent-color-light: #4c4c4c; /* Changed to a neutral gray */
+    --accent-color-light: #4c4c4c;
 }
 
 body {
-    font-family: 'Orbitron', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     margin: 0;
     padding: 0;
     transition: background-color 0.3s, color 0.3s;
+}
+
+.calligraphy-font {
+    font-family: 'Dancing Script', cursive;
 }
 
 .dark-mode {
@@ -64,6 +68,7 @@ body {
 .dark-mode .hero-button,
 .dark-mode .social-button {
     background: var(--instagram-gradient);
+    background-size: 200% 100%; /* Important for button rotation */
     color: #fff;
     border: none;
 }
@@ -153,7 +158,7 @@ body.light-mode .hero-title {
     to { transform: translateX(0); opacity: 1; filter: blur(0); }
 }
 
-@keyframes rotateGradient {
+@keyframes rotateButtonGradient {
     0% { background-position: 0% 50%; }
     100% { background-position: 100% 50%; }
 }
@@ -174,11 +179,9 @@ body.light-mode .hero-title {
     animation: slideInFromTop 0.8s ease-out;
 }
 
-/* Main gradient rotation class */
-.rotate-gradient {
-    background-image: var(--instagram-gradient);
-    background-size: 200% 200%;
-    animation: rotateGradient 0.7s linear;
+/* New class for button gradient animation */
+.rotate-button-gradient {
+    animation: rotateButtonGradient 0.7s linear;
 }
 
 .header {
