@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andromeda Bot</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
 </head>
-<body class="dark-mode"> <header class="header">
+<body class="dark-mode">
+
+    <header class="header">
         <div class="logo">Andromeda</div>
         <nav class="nav">
-            <a href="#" class="nav-link">Pair</a>
-            <a href="#" class="nav-link">Deploy</a>
-            <a href="#" class="nav-link">Panel</a>
+            <a href="#" class="nav-link">Interface</a>
+            <a href="#" class="nav-link">Launch</a>
+            <a href="#" class="nav-link">Control</a>
         </nav>
         <button id="theme-toggle" class="theme-toggle">
             <span class="icon">🌙</span>
@@ -19,11 +24,17 @@
     </header>
 
     <main class="container">
+        <section class="main-hero">
+            <h1 class="hero-title">Initiating Launch Sequence: Andromeda</h1>
+            <p class="hero-subtitle">Your command center for seamless bot deployment across the digital frontier.</p>
+            <a href="#" class="hero-button">Activate Bot Protocol</a>
+        </section>
+
         <section class="bot-section">
             <div class="bot-header">
-                <button class="bot-button">Get Session id</button>
-                <button class="bot-button">Deploy Your Bot</button>
-                <button class="bot-button">Get Plugins</button>
+                <button class="bot-button">Generate Session Key</button>
+                <button class="bot-button">Initiate Bot Launch</button>
+                <button class="bot-button">Download Subroutines</button>
             </div>
             <div class="console-box">
                 <div class="console-header">
@@ -33,50 +44,102 @@
                     <span class="console-title">bot-deployment</span>
                 </div>
                 <div class="console-output">
-                    <p>> Initializing deployment</p>
-                    <p>Scanning for session ID...</p>
-                    <p>Session found: <span class="session-id">ANDROMEDA_12345</span></p>
-                    <p>Preparing deployment...</p>
+                    <p>> System initializing...</p>
+                    <p>Synchronizing core protocols...</p>
+                    <p>Session Key acquired: <span class="session-id">ANDROMEDA_12345</span></p>
+                    <p>Preparing launch sequence...</p>
                 </div>
-                <button class="deploy-button">DEPLOY</button>
+                <button class="deploy-button">ACTIVATE</button>
             </div>
         </section>
-
-        <section class="notice-board">
-            <h2><span class="emoji">⭐</span> Notice Board <span class="emoji">⭐</span></h2>
-            <div class="notice-content">
-                <p><span class="emoji">✨</span> Update: New deployment guides for <span class="highlight">Render</span> and <span class="highlight">Koyeb</span> are now live!</p>
-                <p><span class="emoji">💡</span> Tip: Join our <span class="highlight">Discord</span> for real-time support and the latest news.</p>
-                <p><span class="emoji">🔗</span> Changelog: Check the <span class="highlight">GitHub Releases</span> for new features and bug fixes.</p>
-                <p><span class="emoji">🚀</span> Quick Command: Use `.update` on Andromeda bot to update your bot to the latest version!</p>
-            </div>
-            <a href="https://whatsapp.com/channel/0029VbBFW3S2kNFhJjbvtB2c" class="follow-channel-link">Follow our Channel</a>
-        </section>
-
+        
         <section class="faq-section">
-            <h2>Frequently Asked Questions</h2>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="faq-description">Get answers to the most common questions about Andromeda.</p>
+
             <div class="faq-item">
                 <button class="faq-question">What is Andromeda Bot?</button>
                 <div class="faq-answer">
-                    <p>Welcome to Andromeda! This bot helps you manage and deploy your WhatsApp MD projects easily, with support for cloud deployment and advanced automation. Perfect for developers and teams who want fast, reliable, and customizable bot hosting.</p>
+                    <p>Andromeda is a WhatsApp bot that does a lot of tasks on WhatsApp.</p>
                 </div>
             </div>
             <div class="faq-item">
                 <button class="faq-question">Which deployment platforms are supported?</button>
                 <div class="faq-answer">
-                    <p>Andromeda supports deployment on a wide range of platforms, including Render, Koyeb, and Heroku.</p>
+                    <p>Andromeda supports a wide range of platforms like Vercel, Heroku, and Railway.</p>
                 </div>
             </div>
-        </section>
-        
-        <section class="contact-section">
-            <h2>Contact Us</h2>
-            <div class="contact-info">
-                <p>My WhatsApp: <a href="https://wa.me/989136730390">wa.me/989136730390</a></p>
-                <p>Telegram: <a href="https://t.me/zedside">t.me/zedside</a></p>
+            <div class="faq-item">
+                <button class="faq-question">Is technical knowledge required to deploy a bot?</button>
+                <div class="faq-answer">
+                    <p>No, our documentation provides a step-by-step guide for non-technical users.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Don't understand the commands?</button>
+                <div class="faq-answer">
+                    <p>Check out our command list on the documentation page or contact support.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">What is this website for?</button>
+                <div class="faq-answer">
+                    <p>This website helps you manage and deploy your Andromeda bot.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Can I customize my bot's settings?</button>
+                <div class="faq-answer">
+                    <p>Yes, you can customize your bot's settings through the Panel page.</p>
+                </div>
+            </div>
+            <div class="contact-support-text">
+                <p>Have a question not answered here? <a href="mailto:support@andromeda.com">Contact our support team</a></p>
             </div>
         </section>
     </main>
 
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo-section">
+                <div class="footer-logo">Andromeda</div>
+                <p>The easiest way to deploy and manage your bot across multiple platforms. Fast, reliable, and secure.</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Deploy</a></li>
+                        <li><a href="#">Panel</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Andromeda. All rights reserved.</p>
+            <p>Website built & managed by <span class="highlight">Andromeda</span></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
