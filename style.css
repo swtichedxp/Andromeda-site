@@ -1,5 +1,5 @@
 :root {
-    --crimson-gradient: linear-gradient(45deg, #E30B5D, #FF4B2B); /* Updated to the new color */
+    --primary-color: #DC143C;
     --bg-color-dark: #000000;
     --text-color-dark: #e0e0e0;
     --card-bg-dark: rgba(18, 18, 18, 0.8);
@@ -71,11 +71,9 @@ body::after {
     border: 1px solid var(--console-border-dark);
 }
 
-.dark-mode .deploy-button,
 .dark-mode .hero-button,
 .dark-mode .social-button {
-    background: var(--crimson-gradient);
-    background-size: 200% 100%;
+    background: var(--primary-color);
     color: #fff;
     border: none;
 }
@@ -85,9 +83,9 @@ body::after {
 .dark-mode .section-title,
 .dark-mode .footer-logo,
 .dark-mode .hero-title {
-    background: var(--crimson-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--primary-color);
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
     display: inline-block;
 }
 
@@ -119,10 +117,8 @@ body.light-mode .footer {
 
 body.light-mode .bot-button,
 body.light-mode .hero-button,
-body.light-mode .social-button,
-body.light-mode .deploy-button {
-    background: var(--crimson-gradient);
-    background-size: 200% 100%;
+body.light-mode .social-button {
+    background: var(--primary-color);
     color: white;
     border: none;
 }
@@ -139,9 +135,9 @@ body.light-mode .logo,
 body.light-mode .section-title,
 body.light-mode .footer-logo,
 body.light-mode .hero-title {
-    background: var(--crimson-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--primary-color);
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
     display: inline-block;
 }
 
@@ -164,11 +160,6 @@ body.light-mode .hero-title {
 @keyframes fadeInFromRight {
     from { transform: translateX(50px); opacity: 0; filter: blur(5px); }
     to { transform: translateX(0); opacity: 1; filter: blur(0); }
-}
-
-@keyframes rotateButtonGradient {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
 }
 
 /* Elements that will be animated */
@@ -231,9 +222,9 @@ body.light-mode .hero-title {
 }
 
 .nav-link:hover {
-    background: var(--crimson-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--primary-color);
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
 }
 
 .theme-toggle {
@@ -383,6 +374,11 @@ body.light-mode .hero-title {
     font-weight: 600;
     cursor: pointer;
     transition: opacity 0.3s;
+    background-color: var(--primary-color);
+    color: #fff;
+    text-decoration: none; /* Make sure it looks like a button and not a link */
+    display: block; /* Make it a block-level element */
+    text-align: center; /* Center the text */
 }
 
 .deploy-button:hover {
@@ -490,9 +486,7 @@ body.light-mode .hero-title {
 }
 
 .contact-support-text a:hover {
-    background: var(--crimson-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--primary-color);
 }
 
 /* New style for command examples */
@@ -549,4 +543,4 @@ body.light-mode .hero-title {
     .footer-content {
         flex-direction: column;
     }
-        }
+    }
