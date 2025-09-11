@@ -1,8 +1,8 @@
 :root {
     --instagram-gradient: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888, #9b28b4, #5c2c8f);
-    --bg-color-dark: #121212;
+    --bg-color-dark: #000000; /* Changed to pure black */
     --text-color-dark: #e0e0e0;
-    --card-bg-dark: rgba(30, 30, 30, 0.8);
+    --card-bg-dark: rgba(18, 18, 18, 0.8); /* Adjusted for black background */
     --border-color-dark: #333333;
     --console-bg-dark: rgba(33, 33, 33, 0.9);
     --console-border-dark: #444444;
@@ -22,32 +22,10 @@ body {
     background-color: var(--bg-color-dark);
 }
 
-/* Background image with blur and darken effect */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('https://ik.imagekit.io/apexcloud/d0974806-eec8-419b-bb40-9c19305feefe.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    filter: blur(10px);
-    z-index: -2;
-}
-
-/* Dark overlay on top of the blurred background image */
+/* Remove the background image and its overlay */
+body::before,
 body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: -1;
+    display: none;
 }
 
 .calligraphy-font {
@@ -59,7 +37,7 @@ body::after {
 }
 
 .dark-mode .header {
-    background-color: rgba(30, 30, 30, 0.7);
+    background-color: rgba(18, 18, 18, 0.7); /* Adjusted for black background */
     border-bottom: 1px solid var(--border-color-dark);
     backdrop-filter: blur(8px);
 }
@@ -340,6 +318,10 @@ body.light-mode .hero-title {
     transition: background-color 0.3s;
 }
 
+.bot-button:hover {
+    background-color: #444;
+}
+
 .console-box {
     border-radius: 8px;
     overflow: hidden;
@@ -517,101 +499,25 @@ body.light-mode .hero-title {
 .footer {
     padding: 2rem;
     border-top: 1px solid var(--border-color-dark);
+    text-align: center; /* Center the footer content */
 }
 
 .light-mode .footer {
     border-top: 1px solid var(--border-color-light);
 }
 
-.footer-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: 900px;
-    margin: 0 auto 2rem auto;
-    gap: 2rem;
-}
-
-.footer-logo-section {
-    flex: 1;
-    min-width: 250px;
-}
-
-.footer-logo {
-    font-weight: 700;
-    font-size: 1.5rem;
-}
-
-.footer-logo-section p {
-    color: #b0b0b0;
-    font-size: 0.9rem;
-    line-height: 1.6;
-}
-
-.light-mode .footer-logo-section p {
-    color: #555;
-}
-
-.footer-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-}
-
-.link-group {
-    flex: 1 1 100px;
-}
-
-.link-group h4 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-}
-
-.link-group ul {
-    list-style: none;
-    padding: 0;
+/* Updated footer to center the new text */
+.footer p {
     margin: 0;
 }
 
-.link-group li {
-    margin-bottom: 0.5rem;
-}
-
-.link-group a {
-    text-decoration: none;
-    color: var(--text-color-dark);
-    font-size: 0.9rem;
-    transition: color 0.2s;
-}
-
-.light-mode .link-group a {
-    color: var(--text-color-light);
-}
-
-.link-group a:hover {
-    color: #666;
-}
-
+/* Remove old footer classes */
+.footer-content,
+.footer-logo-section,
+.footer-links,
+.link-group,
 .footer-bottom {
-    text-align: center;
-    font-size: 0.9rem;
-    color: #888;
-}
-
-.light-mode .footer-bottom {
-    color: #555;
-}
-
-.footer-bottom .highlight {
-    background: var(--instagram-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* New class for button gradient animation */
-.rotate-button-gradient {
-    animation: rotateButtonGradient 0.7s linear;
+    display: none;
 }
 
 /* Responsive design */
