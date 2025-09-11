@@ -1,5 +1,5 @@
 :root {
-    --crimson-gradient: linear-gradient(45deg, #FF416C, #FF4B2B); /* Crimson gradient */
+    --crimson-gradient: linear-gradient(45deg, #E30B5D, #FF4B2B); /* Updated to the new color */
     --bg-color-dark: #000000;
     --text-color-dark: #e0e0e0;
     --card-bg-dark: rgba(18, 18, 18, 0.8);
@@ -549,4 +549,4 @@ body.light-mode .hero-title {
     .footer-content {
         flex-direction: column;
     }
-}
+        }
