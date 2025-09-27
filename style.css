@@ -2,137 +2,135 @@
 
 :root {
     /* FUTURISTIC COLOR PALETTE (Cyan-Green Accent) */
-    --primary-color: #00FF88; /* Cyan-Green */
+    --primary-color: #00FF88; 
     --primary-hover-color: #00cc6e; 
     --bg-color-dark: #000000;
     --text-color-dark: #E0E0E0;
-    --card-bg-dark: rgba(10, 10, 10, 0.9); /* Very dark, slightly transparent */
+    --card-bg-dark: rgba(10, 10, 10, 0.9);
     --border-color-dark: #333333;
     --console-bg-dark: rgba(22, 22, 22, 0.9);
     --console-border-dark: var(--primary-color);
+
+    /* Light Mode (Kept for completeness) */
+    --bg-color-light: #f4f7f6;
+    --text-color-light: #2c3e50;
+    --card-bg-light: rgba(255, 255, 255, 0.9);
+    --border-color-light: #e0e6e8;
+    --accent-color-light: #4c4c4c;
 }
 
 body {
-    font-family: 'Space Mono', monospace, Arial, sans-serif;
+    /* Use Space Mono, apply uppercase globally for the stark look */
+    font-family: 'Space Mono', monospace, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
     transition: background-color 0.3s, color 0.3s;
     background-color: var(--bg-color-dark);
-    color: var(--text-color-dark);
-    min-height: 100vh;
-    box-sizing: border-box;
-    overflow-x: hidden;
-    
+    text-transform: uppercase; 
+    letter-spacing: 0.05em;
+
     /* DARK MESH GRADIENT BACKGROUND */
     background-image: radial-gradient(at 0% 0%, #051a14 0%, transparent 50%),
                       radial-gradient(at 100% 100%, #051a14 0%, transparent 50%),
                       radial-gradient(at 50% 50%, #082823 0%, transparent 80%);
     background-size: cover;
     background-attachment: fixed;
-    text-transform: uppercase; /* Global for the stark look */
-    letter-spacing: 0.05em;
-}
-body::before, body::after { display: none; }
-.calligraphy-font { display: none; } /* No longer needed for this style */
-
-/* --- GRID LAYOUT FOR DESKTOP (The "Crazy" Structure) --- */
-
-.interface-grid {
-    display: grid;
-    /* Define 4 columns: 2 small margin columns, 2 large content columns */
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    /* Define rows with flexible heights for content */
-    grid-template-rows: auto 1fr auto auto 1fr auto; 
-    gap: 20px;
-    padding: 30px;
-    max-width: 1400px;
-    margin: 0 auto;
     min-height: 100vh;
 }
 
-/* Defining Grid Areas for Specific Placement */
-.header-grid { grid-area: 1 / 1 / 2 / 5; display: flex; justify-content: space-between; align-items: flex-start; } /* Full top row */
-.grid-area-hero { grid-area: 2 / 1 / 4 / 3; z-index: 5; margin-top: 50px; } /* Large block, top-left/center */
-.grid-area-bot { grid-area: 3 / 2 / 5 / 5; z-index: 4; } /* Overlaps hero, extends right */
-.grid-area-connect { grid-area: 2 / 4 / 3 / 5; z-index: 6; } /* Top right corner */
-.grid-area-faq { grid-area: 4 / 1 / 6 / 3; z-index: 3; } /* Bottom left/center block */
-.grid-area-credits { grid-area: 5 / 3 / 6 / 5; z-index: 2; align-self: end; } /* Bottom right block */
-.grid-area-footer { grid-area: 6 / 1 / 7 / 5; } /* Full bottom row */
+/* Ensure original background styles are removed */
+body::before, body::after { display: none; }
+.calligraphy-font {
+    font-family: 'Dancing Script', cursive; /* Keeping original font for the logo class */
+    text-transform: none; /* Override uppercase for the script font */
+    letter-spacing: 0;
+    font-size: 2.2rem !important; /* Make the logo large and prominent */
+    color: var(--primary-color) !important;
+}
 
-/* --- BASE STYLING FOR SECTIONS (Angular Shapes) --- */
+/* --- DARK MODE STYLES --- */
+.dark-mode { color: var(--text-color-dark); }
+.dark-mode .header {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid var(--border-color-dark);
+}
+.dark-mode .nav-link { color: var(--text-color-dark); }
 
-.main-hero,
-.bot-section,
-.contact-section,
-.faq-section,
-.text-block {
+/* --- SECTION STYLING (Angular Look) --- */
+
+.dark-mode .main-hero,
+.dark-mode .bot-section,
+.dark-mode .contact-section,
+.dark-mode .faq-section,
+.dark-mode .footer {
     background-color: var(--card-bg-dark);
     border: 1px solid var(--border-color-dark);
-    padding: 25px;
-    box-shadow: none; /* Removing soft shadow */
-    transition: transform 0.3s;
-    /* Diagonal clip-path applied to all main sections */
+    backdrop-filter: blur(5px);
+    /* Apply Angular Shape to Sections */
+    border-radius: 0; 
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
-}
-.main-hero:hover, .bot-section:hover, .contact-section:hover, .faq-section:hover {
-    transform: translateY(-5px);
+    transition: transform 0.3s;
 }
 
-/* --- HEADER & LOGO --- */
+/* Overlap Effect using Flexbox and Negative Margins for the "Crazy" look */
+.container {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    /* Max-width is kept for centering, but sections will overlap */
+    max-width: 1000px; 
+    margin: 2rem auto;
+    gap: 0; /* Remove gap between main sections */
+}
 
-.header-graphic {
-    font-family: 'IBM Plex Sans', sans-serif; 
-    font-weight: 700;
-    font-size: 2.2em;
+.main-hero { 
+    padding: 2.5rem;
+    z-index: 5; /* Ensure it stays on top */
+    width: 70%; /* Take up 70% of the container width */
+    margin-bottom: -120px; /* Pull the next section up to overlap */
+}
+
+.bot-section {
+    padding: 2.5rem;
+    z-index: 4;
+    width: 90%; /* Wide section, slightly overlapping the hero left */
+    align-self: flex-end; /* Push to the right */
+    margin-bottom: -80px; /* Pull next section up */
+}
+
+.contact-section { 
+    z-index: 3;
+    width: 50%; /* Smaller block for social links */
+    align-self: flex-start; /* Push to the left */
+    margin-left: 50px; /* Offset from the left edge */
+    margin-bottom: -50px;
+}
+
+.faq-section { 
+    z-index: 2;
+    padding: 2.5rem;
+    width: 80%; /* Large block at the bottom */
+    align-self: flex-end;
+}
+
+/* --- TYPOGRAPHY & COLORS (ACCENT) --- */
+
+.dark-mode .highlight, .dark-mode .logo, .dark-mode .section-title, .dark-mode .footer-logo, .dark-mode .hero-title {
     color: var(--primary-color);
-    letter-spacing: 0.2em;
-    position: relative;
 }
-.header-graphic::after {
-    content: '/////////////////';
-    display: block;
-    font-size: 0.4em;
-    letter-spacing: 0.2em;
-    color: var(--text-color-dark);
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-}
-.theme-toggle {
-    background: none;
-    border: 1px solid var(--primary-color);
-    border-radius: 0; /* Sharp corners on toggle */
-    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%);
-    width: 50px;
-    height: 50px;
-}
-
-/* --- TYPOGRAPHY & COLORS --- */
-
 .hero-title {
-    font-size: 2.8rem;
     font-family: 'IBM Plex Sans', sans-serif;
-    color: var(--primary-color);
-    margin: 0 0 0.8rem 0;
+    font-size: 2.5rem;
     line-height: 1.1;
-    letter-spacing: 0.1em;
-}
-.hero-subtitle {
-    font-size: 1.1rem;
-    color: var(--text-color-dark);
-    margin-bottom: 2rem;
 }
 .section-title {
-    color: var(--primary-color);
-    font-size: 1.4rem;
-    margin-bottom: 1.5rem;
-    text-align: left;
-    border-bottom: 1px solid var(--border-color-dark);
+    border-bottom: 1px solid var(--primary-color); /* Highlight section titles */
     padding-bottom: 5px;
 }
-.session-id { color: var(--primary-color); font-weight: 700; }
+.session-id { color: var(--primary-color); }
+.faq-question::after { color: var(--primary-color); }
 
-/* --- BUTTONS (The Angular Look) --- */
+/* --- BUTTON STYLING (The Angular, Futuristic Look) --- */
 
 .hero-button, .social-button, .deploy-button {
     background: var(--primary-color);
@@ -140,6 +138,7 @@ body::before, body::after { display: none; }
     border: none;
     border-radius: 0;
     font-weight: 700;
+    /* Apply Angular Shape to Buttons */
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
     transition: all 0.3s;
 }
@@ -150,7 +149,6 @@ body::before, body::after { display: none; }
     border: 1px solid var(--primary-color); 
     opacity: 1; 
 }
-.hero-button { padding: 1rem 2rem; }
 
 .bot-button {
     background-color: transparent; 
@@ -159,111 +157,44 @@ body::before, body::after { display: none; }
     border-radius: 0;
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
 }
-.bot-button:hover {
+.dark-mode .bot-button:hover {
     background-color: var(--primary-color);
     color: var(--bg-color-dark);
     border-color: var(--primary-color);
 }
-.deploy-button { font-size: 1.1rem; }
-.social-button { flex: 1 1 100px; }
 
-/* --- CONSOLE & CODE --- */
+/* --- CONSOLE & CODE STYLES --- */
 
-.console-box {
-    border-radius: 0;
+.dark-mode .console-box {
     border: 1px solid var(--console-border-dark);
-    background-color: var(--console-bg-dark);
-}
-.console-header {
-    background-color: #1a1a1a;
-    border-bottom: 1px solid var(--border-color-dark);
 }
 .command-example {
     background-color: #0b1a16; 
     color: var(--primary-color);
 }
 
-/* --- FAQ & CREDIT BLOCKS --- */
-.faq-item { border-bottom-color: var(--border-color-dark); }
-.faq-question::after { color: var(--primary-color); }
-.faq-answer p { font-size: 0.9em; }
-
-.text-block {
-    background: var(--card-bg-dark);
-    padding: 15px 20px;
-    font-size: 0.85em;
-}
-.text-block strong { color: var(--primary-color); display: block; margin-bottom: 5px; }
-.text-block ul { list-style: none; padding: 0; margin: 0; }
-
-/* --- FOOTER --- */
-
+/* --- FOOTER STYLES --- */
 .footer {
-    border: none;
-    background: transparent;
-    padding: 20px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.85em;
+    padding: 1.5rem 2rem;
+    margin-top: 50px;
+    z-index: 1;
+    clip-path: none; /* Remove angular shape from footer */
     border-top: 1px solid var(--border-color-dark);
-}
-.footer-code {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 700;
-    font-size: 1.5em;
-    color: var(--primary-color);
+    border-bottom: 1px solid var(--border-color-dark);
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
-/* --- RESPONSIVE DESIGN (Reverting to stack for mobile) --- */
-
-@media (max-width: 900px) {
-    .interface-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-        padding: 20px;
-    }
-    .header-grid {
-        flex-direction: row;
-        align-items: center;
-    }
-    .logo-area { margin-bottom: 0; }
-    
-    /* Remove specific grid areas, let sections flow naturally */
-    .grid-area-hero,
-    .grid-area-bot,
-    .grid-area-connect,
-    .grid-area-faq,
-    .grid-area-credits {
-        grid-area: unset;
-        width: 100%;
-        margin-top: 0;
-        transform: none !important;
-    }
-    
-    /* Flatten the angular clip-path slightly for better mobile readability */
-    .main-hero, .bot-section, .contact-section, .faq-section, .text-block {
-        clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
-        padding: 20px;
-    }
-    .hero-title { font-size: 2rem; }
-    .footer { flex-direction: column; gap: 10px; }
-}
-
-/* --- LIGHT MODE ADJUSTMENTS (Ensuring new shapes/colors work) --- */
+/* --- LIGHT MODE ADJUSTMENTS --- */
 body.light-mode {
     background-color: var(--bg-color-light);
     color: var(--text-color-light);
 }
-body.light-mode .header-graphic { color: var(--primary-color); }
-body.light-mode .header-graphic::after { color: var(--text-color-light); }
-
-body.light-mode .main-hero, body.light-mode .bot-section, body.light-mode .contact-section, body.light-mode .faq-section, body.light-mode .text-block {
-    background-color: var(--card-bg-light);
-    border: 1px solid var(--border-color-light);
+body.light-mode .footer {
+    border-top: 1px solid var(--border-color-light);
+    border-bottom: 1px solid var(--border-color-light);
+    background-color: rgba(255, 255, 255, 0.8);
 }
-
 body.light-mode .hero-button, body.light-mode .social-button, body.light-mode .deploy-button {
     background: var(--primary-color);
     color: white;
@@ -277,7 +208,93 @@ body.light-mode .bot-button:hover {
     background-color: var(--primary-color);
     color: white;
 }
-body.light-mode .footer-code { color: var(--primary-color); }
+body.light-mode .highlight, body.light-mode .logo, body.light-mode .section-title, body.light-mode .footer-logo, body.light-mode .hero-title {
+    color: var(--primary-color);
+}
 
-/* Animations (Keep your original animations, assuming you'll link to script.js) */
-/* ... (Your original animation CSS goes here) ... */
+/* --- RESPONSIVE DESIGN (Crucial for fixing the "Crazy" layout on mobile) --- */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        gap: 30px; /* Restore gaps between sections */
+        padding: 1rem;
+    }
+    .main-hero, .bot-section, .contact-section, .faq-section {
+        width: 100%; /* Sections take full width */
+        margin: 0; /* Remove all negative margins */
+        align-self: auto;
+        padding: 1.5rem;
+        z-index: auto;
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%); /* Softer angle */
+    }
+}
+
+/* --- REMAINDER OF ORIGINAL CSS (Animations, Standard Layout Rules) --- */
+
+@keyframes fadeInFromTop { from { transform: translateY(-50px); opacity: 0; filter: blur(5px); } to { transform: translateY(0); opacity: 1; filter: blur(0); } }
+@keyframes fadeInFromBottom { from { transform: translateY(50px); opacity: 0; filter: blur(5px); } to { transform: translateY(0); opacity: 1; filter: blur(0); } }
+@keyframes fadeInFromLeft { from { transform: translateX(-50px); opacity: 0; filter: blur(5px); } to { transform: translateX(0); opacity: 1; filter: blur(0); } }
+@keyframes fadeInFromRight { from { transform: translateX(50px); opacity: 0; filter: blur(5px); } to { transform: translateX(0); opacity: 1; filter: blur(0); } }
+
+.main-hero, .bot-section, .contact-section, .faq-section, .footer { opacity: 0; transition: opacity 0.5s; }
+.main-hero.animated { animation: fadeInFromTop 0.8s ease-out forwards; }
+.bot-section.animated { animation: fadeInFromBottom 0.8s ease-out forwards; }
+.contact-section.animated { animation: fadeInFromLeft 0.8s ease-out forwards; }
+.faq-section.animated { animation: fadeInFromRight 0.8s ease-out forwards; }
+.footer.animated { animation: fadeInFromBottom 0.8s ease-out forwards; }
+
+.header {
+    position: sticky; top: 0; z-index: 100; display: flex; flex-direction: column; align-items: center; padding: 1rem 2rem; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.header-top { display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 1rem; }
+.logo { font-weight: 700; font-size: 1.5rem; }
+.nav { display: flex; gap: 1.5rem; }
+.nav-link { text-decoration: none; font-weight: 500; transition: color 0.2s; display: flex; align-items: center; gap: 0.5rem; }
+.nav-icon { font-size: 1.1rem; }
+.nav-link:hover { color: var(--primary-color); }
+.theme-toggle { background: none; border: 1px solid var(--border-color-dark); border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: background-color 0.3s, border-color 0.3s; border-radius: 0; }
+.light-mode .theme-toggle { border-color: var(--border-color-light); border-radius: 0; }
+.main-hero, .bot-section, .contact-section, .faq-section { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); }
+
+.hero-subtitle { font-size: 1.2rem; color: #b0b0b0; margin-bottom: 2rem; }
+.light-mode .hero-subtitle { color: #555; }
+.hero-button { display: inline-block; padding: 1rem 2rem; font-size: 1.1rem; font-weight: 600; text-decoration: none; transition: opacity 0.3s; }
+.bot-header { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.bot-button { flex-grow: 1; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background-color 0.3s; }
+
+.console-box { overflow: hidden; font-family: 'Courier New', Courier, monospace; }
+.console-header { display: flex; align-items: center; padding: 0.5rem 1rem; background-color: #212121; border-bottom: 1px solid #444444; gap: 0.5rem; }
+.light-mode .console-header { background-color: #e0e0e0; border-bottom: 1px solid #ccc; }
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.red { background-color: #e74c3c; } .yellow { background-color: #f1c40f; } .green { background-color: #2ecc71; }
+.console-title { font-size: 0.9rem; color: #b5c3d1; margin-left: 0.5rem; }
+.light-mode .console-title { color: #555; }
+.console-output { padding: 1rem; }
+.console-output p { margin: 0.2rem 0; line-height: 1.4; }
+.deploy-button { width: 100%; border: none; padding: 0.75rem; font-size: 1rem; font-weight: 600; cursor: pointer; transition: opacity 0.3s; text-decoration: none; display: block; text-align: center; }
+
+.contact-section .section-title { margin-bottom: 1rem; }
+.button-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+.social-button { flex: 1 1 150px; text-align: center; padding: 0.75rem 1.5rem; font-weight: 600; text-decoration: none; transition: opacity 0.3s; }
+
+.faq-description { text-align: center; color: #888; margin-bottom: 1.5rem; }
+.light-mode .faq-description { color: #555; }
+.faq-item { border-bottom: 1px solid var(--border-color-dark); padding: 1rem 0; }
+.light-mode .faq-item { border-color: var(--border-color-light); }
+.faq-question { background: none; border: none; width: 100%; text-align: left; font-size: 1.1rem; font-weight: 600; color: inherit; cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 0; }
+.faq-question::after { content: '▾'; font-size: 1.5rem; transition: transform 0.3s; }
+.faq-question.active::after { transform: rotate(180deg); }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease-out; padding-left: 1rem; }
+.faq-answer p { margin: 0.5rem 0; }
+.contact-support-text { text-align: center; margin-top: 1.5rem; }
+.contact-support-text a { text-decoration: none; font-weight: 600; color: inherit; border-bottom: 1px solid; transition: color 0.3s; }
+.contact-support-text a:hover { color: var(--primary-color); }
+.light-mode .command-example { background-color: #e0e0e0; color: #34495e; }
+.footer p { margin: 0; }
+.footer-content, .footer-logo-section, .footer-links, .link-group, .footer-bottom { display: none; }
+@media (max-width: 600px) {
+    .header { flex-direction: column; gap: 1rem; }
+    .nav { justify-content: center; width: 100%; }
+    .bot-header { flex-direction: column; }
+    .footer-content { flex-direction: column; }
+}
