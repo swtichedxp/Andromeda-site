@@ -1,15 +1,15 @@
 :root {
-    /* 1. FUTURISTIC COLOR PALETTE */
+    /* FUTURISTIC COLOR PALETTE */
     --primary-color: #00FF88; /* Changed from red to Cyan-Green */
-    --primary-hover-color: #00cc6e; /* Slightly darker hover state */
+    --primary-hover-color: #00cc6e; 
     --bg-color-dark: #000000;
     --text-color-dark: #E0E0E0;
-    --card-bg-dark: rgba(18, 18, 18, 0.9); /* Opaque cards for better contrast */
+    --card-bg-dark: rgba(18, 18, 18, 0.9); /* Slightly more opaque */
     --border-color-dark: #333333;
     --console-bg-dark: rgba(22, 22, 22, 0.9);
-    --console-border-dark: #00FF88; /* Accent border on console */
+    --console-border-dark: var(--primary-color); /* Accent border on console */
 
-    /* Light Mode (Kept standard light mode colors, only changed primary accent) */
+    /* Light Mode (Only updated primary color) */
     --bg-color-light: #f4f7f6;
     --text-color-light: #2c3e50;
     --card-bg-light: rgba(255, 255, 255, 0.9);
@@ -18,20 +18,19 @@
 }
 
 body {
-    /* Using a techy font from the previous design */
+    /* Using Space Mono for the tech feel */
     font-family: 'Space Mono', monospace, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
     transition: background-color 0.3s, color 0.3s;
     background-color: var(--bg-color-dark);
     
-    /* 3. MESH GRADIENT BACKGROUND */
+    /* DARK MESH GRADIENT BACKGROUND */
     background-image: radial-gradient(at 0% 0%, #051a14 0%, transparent 50%),
                       radial-gradient(at 100% 100%, #051a14 0%, transparent 50%),
-                      radial-gradient(at 50% 50%, #082823 0%, transparent 80%); /* Subtle dark-green/cyan effect */
+                      radial-gradient(at 50% 50%, #082823 0%, transparent 80%);
     background-size: cover;
     background-attachment: fixed;
-    background-blend-mode: overlay; /* Allows the dark background to show through */
 }
 
 /* Remove the background image and its overlay */
@@ -40,51 +39,71 @@ body::after {
     display: none;
 }
 
-.calligraphy-font {
-    /* Kept, but consider removing if not using */
-    font-family: 'Dancing Script', cursive;
+.dark-mode {
+    color: var(--text-color-dark);
 }
-
-/* --- DARK MODE STYLES --- */
 
 .dark-mode .header {
     background-color: rgba(0, 0, 0, 0.8); /* Darker header */
+    border-bottom: 1px solid var(--border-color-dark);
+    backdrop-filter: blur(8px);
 }
 
+.dark-mode .nav-link {
+    color: var(--text-color-dark);
+}
+
+/* IMPORTANT: KEEPING SECTIONS ROUNDED (original styles) */
 .dark-mode .main-hero,
 .dark-mode .bot-section,
 .dark-mode .contact-section,
 .dark-mode .faq-section,
 .dark-mode .footer {
-    /* 2. SHARP CORNERS AND DIAGONAL CLIP-PATH */
-    border-radius: 0; /* Remove rounded corners */
-    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%); /* Diagonal bottom-right */
-    padding: 2rem; /* Increase padding after removing rounded corners */
+    background-color: var(--card-bg-dark);
+    border: 1px solid var(--border-color-dark);
+    backdrop-filter: blur(5px);
+    /* RESTORED: NO clip-path or border-radius: 0; */
 }
 
-/* Buttons (Hero, Social, Deploy) */
+/* PRIMARY ACCENT ELEMENTS - BUTTONS & TITLES */
+
+.dark-mode .highlight,
+.dark-mode .logo,
+.dark-mode .section-title,
+.dark-mode .footer-logo,
+.dark-mode .hero-title {
+    color: var(--primary-color); /* Cyan-Green accent */
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    display: inline-block;
+}
+
+/* PRIMARY BUTTONS (Hero, Social, Deploy) - Angular & Inverted Hover */
 .dark-mode .hero-button,
 .dark-mode .social-button,
 .deploy-button {
     background: var(--primary-color);
-    color: var(--dark-bg-color); /* Black text on bright button */
-    border-radius: 0;
+    color: var(--bg-color-dark); /* Black text on bright button */
+    border: none;
+    border-radius: 0; /* Sharp corners */
     font-weight: 700;
-    border: 1px solid var(--primary-color); /* Start with a border for consistency */
-    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%); /* Diagonal bottom-right */
+    transition: background 0.3s, color 0.3s;
+    /* Diagonal edge applied */
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
 }
 
 .dark-mode .hero-button:hover,
 .dark-mode .social-button:hover,
 .deploy-button:hover {
-    background-color: var(--dark-bg-color); /* Invert colors on hover */
+    background-color: var(--dark-bg-color); /* Invert to black */
     color: var(--primary-color);
-    opacity: 1; /* Override default opacity */
+    border: 1px solid var(--primary-color); /* Add a subtle border on hover */
+    opacity: 1; 
 }
 
+/* SECONDARY BUTTONS (Bot Button) - Darker/Outline Style */
 .dark-mode .bot-button {
-    /* Secondary button style */
-    background-color: transparent;
+    background-color: transparent; /* Changed to transparent outline style */
     color: var(--primary-color);
     border: 1px solid var(--border-color-dark);
     border-radius: 0;
@@ -92,49 +111,39 @@ body::after {
 }
 
 .dark-mode .bot-button:hover {
-    background-color: var(--primary-color); /* Invert on hover */
+    background-color: var(--primary-color); /* Invert to solid on hover */
     color: var(--dark-bg-color);
     border-color: var(--primary-color);
 }
 
+
+/* CONSOLE/CODE BLOCK STYLES */
 .dark-mode .console-box {
-    border-color: var(--console-border-dark); /* Cyan-Green border */
-    border-radius: 0;
+    background-color: var(--console-bg-dark);
+    border: 1px solid var(--console-border-dark); /* Accent Border */
+    border-radius: 4px; /* Slightly softer console box */
 }
-
-.dark-mode .highlight,
-.dark-mode .logo,
-.dark-mode .section-title,
-.dark-mode .footer-logo,
-.dark-mode .hero-title {
-    color: var(--primary-color); /* Use the new Cyan-Green accent */
-}
-
 .session-id {
-    color: var(--primary-color); /* Use accent color for session ID */
-}
-
-/* FAQ question icon */
-.faq-question::after {
     color: var(--primary-color);
 }
-
-/* Command Example Text */
 .command-example {
-    background-color: #0b1a16; /* Darker green background for code */
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #0b1a16;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
     color: var(--primary-color);
+    white-space: nowrap;
 }
 
-/* Theme Toggle */
+/* THEME TOGGLE */
 .theme-toggle {
-    border: 1px solid var(--primary-color); /* Accent border on toggle */
+    border: 1px solid var(--primary-color);
 }
-.dark-mode .theme-toggle:hover {
-    background-color: var(--bg-color-dark);
+.light-mode .theme-toggle {
+    border-color: var(--primary-color);
 }
 
-/* --- LIGHT MODE STYLES (Minimal change, only primary color) --- */
-
+/* Light Mode Buttons (only updating color and shape) */
 body.light-mode .bot-button,
 body.light-mode .hero-button,
 body.light-mode .social-button,
@@ -153,3 +162,6 @@ body.light-mode .footer-logo,
 body.light-mode .hero-title {
     color: var(--primary-color);
 }
+
+/* All other styles (animations, layout, media queries) remain the same. */
+/* ... (the rest of your original CSS goes here) ... */
